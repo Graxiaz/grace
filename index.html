@@ -43,27 +43,27 @@
             cursor: default;
         }
        .sparkle {
-    	position: absolute;
-    	width: 6px;
-    	height: 6px;
-    	background-color: gold;
-    	border-radius: 50%;
-    	pointer-events: none;
-    	opacity: 1;
-    	animation: sparkle-animation 0.5s ease-out;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, gold, rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0));
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+    filter: drop-shadow(0 0 5px gold);
+    animation: sparkle-animation 0.8s ease-out forwards;
 }
 
-	@keyframes sparkle-animation {
-    	0% {
-        	transform: scale(1);
-        	opacity: 1;
-    	}
-    	100% {
-        	transform: scale(2);
-        	opacity: 0;
+@keyframes sparkle-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2.5);
+        opacity: 0;
     }
 }
-    </style>
     </style>
 </head>
 <body class="bg-gray-100">
@@ -172,21 +172,27 @@
     </div>
 
     <script>
-        document.querySelectorAll(".profile-img").forEach(img => {
+       document.querySelectorAll(".profile-img").forEach(img => {
     img.addEventListener("mousemove", function (e) {
-        let sparkle = document.createElement("div");
-        sparkle.classList.add("sparkle");
-        
-        document.body.appendChild(sparkle);
-        
-        sparkle.style.left = `${e.pageX}px`;
-        sparkle.style.top = `${e.pageY}px`;
-        
-        setTimeout(() => {
-            sparkle.remove();
-        }, 500);
+        for (let i = 0; i < 5; i++) { // Generates multiple sparkles
+            let sparkle = document.createElement("div");
+            sparkle.classList.add("sparkle");
+
+            document.body.appendChild(sparkle);
+
+            let offsetX = (Math.random() - 0.5) * 20; // Randomize position around cursor
+            let offsetY = (Math.random() - 0.5) * 20;
+
+            sparkle.style.left = `${e.pageX + offsetX}px`;
+            sparkle.style.top = `${e.pageY + offsetY}px`;
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 800); // Remove after animation
+        }
     });
 });
+
 
     </script>
 </body>
