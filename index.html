@@ -40,7 +40,7 @@
             cursor: pointer;
         }
         #profile-info {
-            cursor: pointer;
+            cursor: default;
         }
         .sparkle {
             position: absolute;
@@ -173,8 +173,23 @@
                 item.classList.add('active-menu');
                 let infoText = item.getAttribute('data-info');
                 document.getElementById('profile-info').innerHTML = infoText;
+                attachSparkleEffect();
             });
         });
+	function attachSparkleEffect() {
+            document.querySelectorAll('#profile-img').forEach(img => {
+                img.addEventListener("mousemove", function(e) {
+                    let sparkle = document.createElement("div");
+                    sparkle.classList.add("sparkle");
+                    document.body.appendChild(sparkle);
+                    sparkle.style.left = `${e.clientX}px`;
+                    sparkle.style.top = `${e.clientY}px`;
+                    setTimeout(() => sparkle.remove(), 600);
+                });
+            });
+	}
+        
+        attachSparkleEffect(); // Initial call for the default profile image
     </script>
 </body>
 </html>
