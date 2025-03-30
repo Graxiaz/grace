@@ -42,26 +42,27 @@
         #profile-info {
             cursor: default;
         }
-        .sparkle {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: gold;
-            border-radius: 50%;
-            pointer-events: none;
-            box-shadow: 0 0 8px gold;
-            animation: sparkle 0.5s ease-out forwards;
-        }
-        @keyframes sparkle {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(3);
-                opacity: 0;
-            }
-        }
+       .sparkle {
+    	position: absolute;
+    	width: 6px;
+    	height: 6px;
+    	background-color: gold;
+    	border-radius: 50%;
+    	pointer-events: none;
+    	opacity: 1;
+    	animation: sparkle-animation 0.5s ease-out;
+}
+
+	@keyframes sparkle-animation {
+    	0% {
+        	transform: scale(1);
+        	opacity: 1;
+    	}
+    	100% {
+        	transform: scale(2);
+        	opacity: 0;
+    }
+}
     </style>
     </style>
 </head>
@@ -171,29 +172,22 @@
     </div>
 
     <script>
-        document.querySelectorAll('.toggle-menu').forEach(item => {
-            item.addEventListener('click', () => {
-                document.querySelectorAll('.toggle-menu').forEach(el => el.classList.remove('active-menu'));
-                item.classList.add('active-menu');
-                let infoText = item.getAttribute('data-info');
-                document.getElementById('profile-info').innerHTML = infoText;
-                attachSparkleEffect();
-            });
-        });
-	document.querySelectorAll('.profile-img').forEach(img => {
-            img.addEventListener('mousemove', function(e) {
-                const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle');
-                document.body.appendChild(sparkle);
-                
-                sparkle.style.left = `${e.pageX}px`;
-                sparkle.style.top = `${e.pageY}px`;
-                
-                setTimeout(() => {
-                    sparkle.remove();
-                }, 500);
-            });
-        });
+        document.querySelectorAll(".profile-img").forEach(img => {
+    img.addEventListener("mousemove", function (e) {
+        let sparkle = document.createElement("div");
+        sparkle.classList.add("sparkle");
+        
+        document.body.appendChild(sparkle);
+        
+        sparkle.style.left = `${e.pageX}px`;
+        sparkle.style.top = `${e.pageY}px`;
+        
+        setTimeout(() => {
+            sparkle.remove();
+        }, 500);
+    });
+});
+
     </script>
 </body>
 </html>
