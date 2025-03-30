@@ -49,7 +49,7 @@
             background: radial-gradient(circle, white, rgba(255, 255, 255, 0));
             border-radius: 50%;
             pointer-events: none;
-            animation: sparkle-animation 0.6s linear infinite;
+            animation: sparkle-animation 0.6s linear;
         }
         @keyframes sparkle-animation {
             0% { opacity: 1; transform: scale(1); }
@@ -182,8 +182,8 @@
                     let sparkle = document.createElement("div");
                     sparkle.classList.add("sparkle");
                     document.body.appendChild(sparkle);
-                    sparkle.style.left = `${e.clientX}px`;
-                    sparkle.style.top = `${e.clientY}px`;
+                    sparkle.style.left = `${e.pageX}px`;
+                    sparkle.style.top = `${e.pageY}px`;
                     setTimeout(() => sparkle.remove(), 600);
                 });
             });
